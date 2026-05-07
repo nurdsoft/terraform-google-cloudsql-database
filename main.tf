@@ -19,7 +19,7 @@ resource "google_compute_global_address" "private_ip_alloc" {
 }
 
 resource "google_service_networking_connection" "private_vpc_connection" {
-  count                   = var.create_service_networking_connection && var.create_database ? 1 : 0
+  count                   = var.create_service_networking_connection && var.create_database && var.ip_configuration.private_network != null ? 1 : 0
   network                 = var.ip_configuration.private_network
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.private_ip_alloc[0].name]
@@ -83,7 +83,6 @@ resource "google_sql_database_instance" "sql_database_instance" {
       content {
         ipv4_enabled                                  = lookup(ip_configuration.value, "ipv4_enabled", null)
         private_network                               = lookup(ip_configuration.value, "private_network", null)
-        require_ssl                                   = lookup(ip_configuration.value, "require_ssl", null)
         ssl_mode                                      = lookup(ip_configuration.value, "ssl_mode", null)
         allocated_ip_range                            = lookup(ip_configuration.value, "allocated_ip_range", null)
         enable_private_path_for_google_cloud_services = lookup(ip_configuration.value, "enable_private_path_for_google_cloud_services", false)

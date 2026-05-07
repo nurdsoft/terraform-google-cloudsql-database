@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 5.0"
-    }
-  }
-}
-
 provider "google" {
   project = "data-project"
 }
@@ -25,8 +16,8 @@ locals {
 }
 
 module "database" {
-  source  = "nurdsoft/cloudsql-database/google"
-  version = "0.1.0"
+  source              = "nurdsoft/cloudsql-database/google"
+  version             = "0.1.0"
   project_id          = var.project_id
   labels              = merge(local.labels, { component = "database" })
   region              = var.region
