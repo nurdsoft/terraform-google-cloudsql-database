@@ -8,7 +8,7 @@ resource "random_id" "suffix" {
 # --------------------------
 
 resource "google_compute_global_address" "private_ip_alloc" {
-  count         = var.internal_database_ip ? 1 : 0
+  count         = var.internal_database_ip && var.ip_configuration.private_network != null ? 1 : 0
   name          = "${var.project_id}-${var.region}-private-ip-range"
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"
@@ -19,7 +19,7 @@ resource "google_compute_global_address" "private_ip_alloc" {
 }
 
 resource "google_service_networking_connection" "private_vpc_connection" {
-  count                   = var.create_service_networking_connection && var.create_database && var.ip_configuration.private_network != null ? 1 : 0
+  count                   = var.create_service_networking_connection && var.create_database && var.internal_database_ip && var.ip_configuration.private_network != null ? 1 : 0
   network                 = var.ip_configuration.private_network
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.private_ip_alloc[0].name]
