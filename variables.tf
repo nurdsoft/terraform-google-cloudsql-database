@@ -207,7 +207,6 @@ variable "ip_configuration" {
     authorized_networks                           = optional(list(map(string)), [])
     ipv4_enabled                                  = optional(bool, true)
     private_network                               = optional(string)
-    require_ssl                                   = optional(bool)
     ssl_mode                                      = optional(string)
     allocated_ip_range                            = optional(string)
     enable_private_path_for_google_cloud_services = optional(bool, false)
@@ -245,8 +244,7 @@ variable "read_replicas" {
     ip_configuration = object({
       authorized_networks                           = optional(list(map(string)), [])
       ipv4_enabled                                  = optional(bool)
-      private_network                               = optional(string, )
-      require_ssl                                   = optional(bool)
+      private_network                               = optional(string)
       ssl_mode                                      = optional(string)
       allocated_ip_range                            = optional(string)
       enable_private_path_for_google_cloud_services = optional(bool, false)

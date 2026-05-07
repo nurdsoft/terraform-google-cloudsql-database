@@ -1,6 +1,6 @@
 module "multiple-databases" {
-  source  = "nurdsoft/cloudsql-database/google"
-  version = "0.1.0"
+  source                      = "nurdsoft/cloudsql-database/google"
+  version                     = "0.1.0"
   project_id                  = "zeus-404008"
   name                        = "example-csql-v1"
   random_instance_name        = false
@@ -32,6 +32,7 @@ module "multiple-databases" {
     cloud         = "gcp"
     component     = "project"
     environment   = "dev"
+    customer      = "ns"
     client        = "ns"
     application   = "internal"
   }
@@ -50,7 +51,6 @@ module "multiple-databases" {
   ip_configuration = {
     ipv4_enabled       = true
     private_network    = null
-    require_ssl        = false
     ssl_mode           = "ENCRYPTED_ONLY"
     allocated_ip_range = null
     authorized_networks = [{

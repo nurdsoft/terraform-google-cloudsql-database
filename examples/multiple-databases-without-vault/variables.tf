@@ -20,13 +20,13 @@ variable "region" {
 variable "environment" {
   description = "The target environment (e.g., dev, qas, prod, uat)"
   type        = string
-  default = "dev"
+  default     = "dev"
 }
 
 variable "project_id" {
   description = "Project ID"
   type        = string
-  default = "virendra-test-459520"
+  default     = "virendra-test-459520"
 }
 
 variable "create_database" {

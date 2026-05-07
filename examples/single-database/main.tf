@@ -1,6 +1,6 @@
 module "single-database" {
-  source  = "nurdsoft/cloudsql-database/google"
-  version = "0.1.0"
+  source                      = "nurdsoft/cloudsql-database/google"
+  version                     = "0.1.0"
   project_id                  = "zeus-404008"
   name                        = "example-csql"
   random_instance_name        = false
@@ -37,7 +37,6 @@ module "single-database" {
   ip_configuration = {
     ipv4_enabled       = true
     private_network    = null
-    require_ssl        = false
     ssl_mode           = "ENCRYPTED_ONLY"
     allocated_ip_range = null
     authorized_networks = [{
