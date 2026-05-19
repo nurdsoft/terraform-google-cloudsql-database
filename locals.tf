@@ -1,5 +1,5 @@
 locals {
-  master_instance_name = var.random_instance_name ? "${var.name}-${random_id.suffix[0].hex}" : "${var.labels["customer"]}-${var.labels["environment"]}"
+  master_instance_name = var.random_instance_name ? "${var.name}-${random_id.suffix[0].hex}" : (var.name != "" ? var.name : "${var.labels["customer"]}-${var.labels["environment"]}")
 
   ip_configuration_enabled = length(keys(var.ip_configuration)) > 0 ? true : false
 

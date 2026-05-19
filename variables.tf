@@ -450,3 +450,12 @@ variable "private_ip_address" {
   type        = string
   default     = null
 }
+
+variable "clone" {
+  description = "If set, creates this instance as a point-in-time clone of another Cloud SQL instance."
+  type = object({
+    source_instance_name = string
+    point_in_time        = optional(string)
+  })
+  default = null
+}
