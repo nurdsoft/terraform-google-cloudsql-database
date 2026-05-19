@@ -172,7 +172,8 @@ resource "google_sql_database_instance" "sql_database_instance" {
 
   lifecycle {
     ignore_changes = [
-      settings[0].disk_size
+      settings[0].disk_size,
+      settings[0].ip_configuration[0].allocated_ip_range
     ]
   }
 
